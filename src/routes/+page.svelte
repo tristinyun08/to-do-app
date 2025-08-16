@@ -62,7 +62,7 @@
         </button>
         </div>
         <ul class="list-none p-0 m-0">
-            {#each todos as todo, index (todo.text)}
+            {#each todos as todo, index (index)}
                 <li class="bg-[#eee] p-2.5 mb-2.5 rounded flex items-center">
                     <input type="checkbox" 
                     class="mr-2.5 accent-[#28a745]" 
