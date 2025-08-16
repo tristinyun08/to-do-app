@@ -1,6 +1,13 @@
-import { pgTable, serial, integer } from 'drizzle-orm/pg-core';
+import { pgTable, text, boolean, timestamp, jsonb } from 'drizzle-orm/pg-core';
+import type { Todo } from '../../types'; 
 
 export const user = pgTable('user', {
-	id: serial('id').primaryKey(),
-	age: integer('age')
+	id: text('id').primaryKey(),
+	name: text('name'),
+	email: text('email').unique(),
+	emailVerified: boolean('emailVerified').default(false),
+	image: text('image'),
+	createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow(),
+	updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow(),
+	todos: jsonb('todos').$type<Todo[]>().default([])
 });
