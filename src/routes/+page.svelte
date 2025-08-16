@@ -36,6 +36,12 @@
             Add
         </button>
         </div>
-        <ul class="list-none p-0 m-0"></ul>
+        <ul class="list-none p-0 m-0">
+            {#each todos as todo (todo.text)}
+                <li class="bg-[#eee] p-2.5 mb-2.5 rounded flex items-center">
+                    <span class="flex-grow">{todo.text}</span>
+                </li>
+	        {/each}
+        </ul>
 	</div>
 </div>
