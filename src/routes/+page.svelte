@@ -1,5 +1,18 @@
 <script lang="ts">
-	let todos = $state<{ text: string; completed: boolean }[]>([]);
+	import { onMount } from 'svelte';
+
+    onMount(() => {
+        try {
+            const saved = localStorage.getItem('todos');
+            if (saved) {
+                todos = JSON.parse(saved);
+            }
+        } catch (e) {
+            console.error('Could not load todos from localStorage', e);
+        }
+    });
+    
+    let todos = $state<{ text: string; completed: boolean }[]>([]);
 	let newTodoText = $state('');
 
 	function addTodo() {
@@ -19,7 +32,7 @@
     function deleteTodo(index: number) {
 		todos.splice(index, 1);
 	}
-    
+
     $effect(() => {
 		if (typeof window !== 'undefined') {
 			localStorage.setItem('todos', JSON.stringify(todos));
@@ -60,12 +73,13 @@
                 >
                     {todo.text}
                 </span>
-                    <button 
-                        class="py-1 px-2.5 bg-[#dc3545] text-white rounded cursor-pointer ml-1 border-none text-sm hover:bg-[#c82333] transition-colors">
-                        onclick={() => deleteTodo(index)}
-                    
-                        Delete
-                    </button>
+
+                <button 
+                    class="py-1 px-2.5 bg-[#dc3545] text-white rounded cursor-pointer ml-1 border-none text-sm hover:bg-[#c82333] transition-colors"
+                    onclick={() => deleteTodo(index)}
+                >
+                    Delete
+                </button>
                 </li>
 	        {/each}
         </ul>
