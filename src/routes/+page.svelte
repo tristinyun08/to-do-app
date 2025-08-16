@@ -1,6 +1,14 @@
 <script lang="ts">
-	let todos = $state([]);
+		let todos = $state<{ text: string; completed: boolean }[]>([]);
 	let newTodoText = $state('');
+
+	function addTodo() {
+		const trimmedText = newTodoText.trim();
+		if (trimmedText) {
+			todos.push({ text: trimmedText, completed: false });
+			newTodoText = '';
+		}
+	}
 </script>
 
 <div class="font-serif min-h-screen bg-[#bba58f] flex items-center justify-center p-4">
@@ -14,9 +22,10 @@
             />
             <button
                 class="py-2.5 px-4 bg-[#28a745] text-white rounded-r cursor-pointer ml-2.5 border-none text-base hover:bg-[#218838] transition-colors"
+                
             >
-                Add
-            </button>
+            Add
+        </button>
         </div>
         <ul class="list-none p-0 m-0"></ul>
 	</div>
