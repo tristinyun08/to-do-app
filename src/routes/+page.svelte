@@ -32,6 +32,14 @@
 		todos.splice(index, 1);
 	}
 
+    function startEditing(index: number) {
+        const todo = todos[index];
+        const newText = prompt('Edit your to-do list:', todo.text);
+        if (newText && newText.trim()) {
+            todo.text = newText.trim();
+        }
+    }
+
     $effect(() => {
 		try {
             localStorage.setItem('todos', JSON.stringify(todos));
@@ -77,6 +85,7 @@
 
                     <button
                         class="py-1 px-2.5 bg-blue-700 text-white rounded cursor-pointer ml-auto mr-1 border-none text-sm hover:bg-blue-900 transition-colors"
+                        onclick={() => startEditing(index)}
                     >
                         Edit
                     </button>
