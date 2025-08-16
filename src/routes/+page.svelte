@@ -27,6 +27,7 @@
                 placeholder="Add a new to-do..."
                 class="flex-grow p-2.5 border border-[#ddd] rounded-l text-base bg-white"
                 bind:value={newTodoText}
+                onkeydown={handleKeydown}
             />
             <button
                 class="py-2.5 px-4 bg-[#28a745] text-white rounded-r cursor-pointer ml-2.5 border-none text-base hover:bg-[#218838] transition-colors"
