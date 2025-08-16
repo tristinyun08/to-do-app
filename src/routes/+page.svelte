@@ -40,6 +40,10 @@
         }
     }
 
+    function clearCompleted() {
+        todos=todos.filter(todo => !todo.completed);
+    }
+
     $effect(() => {
 		try {
             localStorage.setItem('todos', JSON.stringify(todos));
@@ -98,5 +102,13 @@
                 </li>
 	        {/each}
         </ul>
+        {#if todos.length > 0}
+            <button
+                class="py-1 px-2.5 bg-gray-500 text-white rounded cursor-pointer ml-1 border-none text-sm hover:bg-gray-700 transition-colors"
+                onclick={clearCompleted}
+            >
+                Clear Completed
+            </button>
+        {/if}
 	</div>
 </div>
