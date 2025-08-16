@@ -22,7 +22,7 @@
             />
             <button
                 class="py-2.5 px-4 bg-[#28a745] text-white rounded-r cursor-pointer ml-2.5 border-none text-base hover:bg-[#218838] transition-colors"
-                
+                onclick={addTodo}
             >
             Add
         </button>
