@@ -1,2 +1,4 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<div class="font-serif min-h-screen bg-[#bba58f] flex items-center justify-center p-4">
+	<div class="bg-[#e8d9cd] p-5 rounded-lg shadow-lg w-full max-w-md">
+	</div>
+</div>
