@@ -64,23 +64,28 @@
             {#each todos as todo, index (index)}
                 <li class="bg-[#eee] p-2.5 mb-2.5 rounded flex items-center">
                     <input type="checkbox" 
-                    class="mr-2.5 accent-[#28a745]" 
-                    bind:checked={todo.completed}
+                        class="mr-2.5 accent-[#28a745]" 
+                        bind:checked={todo.completed}
                     />
                     <span 
-                    class="flex-grow"
-                    class:line-through={todo.completed}
-                    class:text-[#888]={todo.completed}
-                >
-                    {todo.text}
-                </span>
+                        class="flex-grow"
+                        class:line-through={todo.completed}
+                        class:text-[#888]={todo.completed}
+                    >
+                        {todo.text}
+                    </span>
 
-                <button 
-                    class="py-1 px-2.5 bg-[#dc3545] text-white rounded cursor-pointer ml-1 border-none text-sm hover:bg-[#c82333] transition-colors"
-                    onclick={() => deleteTodo(index)}
-                >
-                    Delete
-                </button>
+                    <button
+                        class="py-1 px-2.5 bg-blue-700 text-white rounded cursor-pointer ml-auto mr-1 border-none text-sm hover:bg-blue-900 transition-colors"
+                    >
+                        Edit
+                    </button>
+                    <button 
+                        class="py-1 px-2.5 bg-[#dc3545] text-white rounded cursor-pointer ml-1 border-none text-sm hover:bg-[#c82333] transition-colors"
+                        onclick={() => deleteTodo(index)}
+                    >
+                        Delete
+                    </button>
                 </li>
 	        {/each}
         </ul>
