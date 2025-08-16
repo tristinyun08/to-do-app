@@ -16,11 +16,10 @@
 	let newTodoText = $state('');
 
 	function addTodo() {
-		const trimmedText = newTodoText.trim();
-		if (trimmedText) {
-			todos.push({ text: trimmedText, completed: false });
-			newTodoText = '';
-		}
+        if (newTodoText.trim()) {
+            todos.push({ text: newTodoText.trim(), completed: false });
+            newTodoText = '';
+        }
 	}
 
     function handleKeydown(event: KeyboardEvent) {
