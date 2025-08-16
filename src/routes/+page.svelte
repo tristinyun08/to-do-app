@@ -1,5 +1,5 @@
 <script lang="ts">
-		let todos = $state<{ text: string; completed: boolean }[]>([]);
+	let todos = $state<{ text: string; completed: boolean }[]>([]);
 	let newTodoText = $state('');
 
 	function addTodo() {
@@ -43,9 +43,13 @@
         <ul class="list-none p-0 m-0">
             {#each todos as todo, index (todo.text)}
                 <li class="bg-[#eee] p-2.5 mb-2.5 rounded flex items-center">
-                    <input type="checkbox" class="mr-2.5 accent-[#28a745]" />
+                    <input type="checkbox" 
+                    class="mr-2.5 accent-[#28a745]" 
+                    bind:checked={todo.completed}
+                    />
                     <span class="flex-grow">{todo.text}</span>
-                    <button class="py-1 px-2.5 bg-[#dc3545] text-white rounded cursor-pointer ml-1 border-none text-sm hover:bg-[#c82333] transition-colors">
+                    <button 
+                        class="py-1 px-2.5 bg-[#dc3545] text-white rounded cursor-pointer ml-1 border-none text-sm hover:bg-[#c82333] transition-colors">
                         onclick={() => deleteTodo(index)}
                     
                         Delete
