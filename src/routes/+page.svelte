@@ -16,6 +16,10 @@
 		}
 	}
 
+    function deleteTodo(index: number) {
+		todos.splice(index, 1);
+	}
+
 </script>
 
 <div class="font-serif min-h-screen bg-[#bba58f] flex items-center justify-center p-4">
