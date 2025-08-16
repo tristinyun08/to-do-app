@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Todo } from '$lib/types';
 	import type { PageData } from './$types';
+	import { renderKatex } from '$lib/actions/katex';
 
 	function startEditing(index: number) {
 		const todo = todos[index];
@@ -93,6 +94,7 @@
 						class="flex-grow"
 						class:line-through={todo.completed}
 						class:text-[#888]={todo.completed}
+            use:renderKatex={todo.text}
 					>
 						{todo.text}
 					</span>
