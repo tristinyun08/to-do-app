@@ -12,7 +12,7 @@
         }
     });
     
-    let todos = $state<{ text: string; completed: boolean }[]>([]);
+    let todos: {text: string; completed: boolean}[] = $state([]);
 	let newTodoText = $state('');
 
 	function addTodo() {
