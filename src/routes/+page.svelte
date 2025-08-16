@@ -47,7 +47,13 @@
                     class="mr-2.5 accent-[#28a745]" 
                     bind:checked={todo.completed}
                     />
-                    <span class="flex-grow">{todo.text}</span>
+                    <span 
+                    class="flex-grow"
+                    class:line-through={todo.completed}
+                    class:text-[#888]={todo.completed}
+                >
+                    {todo.text}
+                </span>
                     <button 
                         class="py-1 px-2.5 bg-[#dc3545] text-white rounded cursor-pointer ml-1 border-none text-sm hover:bg-[#c82333] transition-colors">
                         onclick={() => deleteTodo(index)}
