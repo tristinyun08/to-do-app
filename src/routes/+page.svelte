@@ -34,10 +34,12 @@
 	}
 
     $effect(() => {
-		if (typeof window !== 'undefined') {
-			localStorage.setItem('todos', JSON.stringify(todos));
+		try {
+            localStorage.setItem('todos', JSON.stringify(todos));
+        } catch (e) {
+			console.error('you failed to save todos', e)
 		}
-	});
+    });
 
 </script>
 
