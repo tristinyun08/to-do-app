@@ -19,6 +19,12 @@
     function deleteTodo(index: number) {
 		todos.splice(index, 1);
 	}
+    
+    $effect(() => {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem('todos', JSON.stringify(todos));
+		}
+	});
 
 </script>
 
