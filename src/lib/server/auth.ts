@@ -2,7 +2,8 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from './db/index.js'; 
 import { user } from './db/schema.js'; 
-import type { InferSelectModel } from 'drizzle-orm'; 
+import type { InferSelectModel } from 'drizzle-orm';
+
 
 type UserAttributes = InferSelectModel<typeof user>;
 
@@ -11,7 +12,8 @@ export const auth = betterAuth({
 		provider: 'pg'
 	}),
 	emailAndPassword: {
-		enabled: true
+		enabled: true,
+        autoSignIn: false
 	},
 	getUserAttributes: (attributes: UserAttributes) => {
 		return {

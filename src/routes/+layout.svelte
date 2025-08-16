@@ -1,14 +1,11 @@
-<script lang="ts">
-	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
+<script>
 	import 'katex/dist/katex.min.css';
-	let { children } = $props();
 	
+	import '../app.css';
+
+	let { children } = $props();
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
-
-{@render children?.()}
-
+<div class="font-serif min-h-screen bg-[#bba58f] flex items-center justify-center p-4">
+	{@render children()}
+</div>
