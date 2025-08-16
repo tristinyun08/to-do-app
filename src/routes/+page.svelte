@@ -9,6 +9,13 @@
 			newTodoText = '';
 		}
 	}
+
+    function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Enter') {
+			addTodo();
+		}
+	}
+
 </script>
 
 <div class="font-serif min-h-screen bg-[#bba58f] flex items-center justify-center p-4">
