@@ -1,42 +1,35 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { Todo } from '$lib/types';
-	import type { PageData } from './$types';
 	import { renderKatex } from '$lib/actions/katex';
-  import { authClient } from '$lib/auth-client';
+	import { authClient } from '$lib/auth-client';
 	import { goto } from '$app/navigation';
 
-	function startEditing(index: number) {
-		const todo = todos[index];
-		if (todo) {
-			const newText = prompt('Edit your to-do:', todo.text);
-			if (newText !== null && newText.trim() !== '') {
-				todo.text = newText.trim();
-			}
-		}
-	}
-
-	function clearCompleted() {
-		todos = todos.filter((todo) => !todo.completed);
-	}
-
-  interface UserWithTodos {
+	interface UserWithTodos {
 		id: string;
-		todos: Todo[];
 		email: string | null | undefined;
+		todos: Todo[];
 	}
 
 	let { data }: { data: { user: UserWithTodos | null } } = $props();
 
-
 	let todos = $state<Todo[]>(data.user?.todos || []);
 	let newTodoText = $state('');
+	let isMounted = false;
+
+	onMount(() => {
+		isMounted = true;
+	});
 
 	$effect(() => {
-		if (todos !== data.user?.todos) {
+		if (isMounted) {
+			const todosSnapshot = $state.snapshot(todos);
+			console.log('SAVING TODOS TO DATABASE:', todosSnapshot);
+			
 			fetch('/savetodos', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ todos })
+				body: JSON.stringify({ todos: todosSnapshot })
 			});
 		}
 	});
@@ -58,6 +51,20 @@
 		if (index !== -1) {
 			todos.splice(index, 1);
 		}
+	}
+
+	function startEditing(index: number) {
+		const todo = todos[index];
+		if (todo) {
+			const newText = prompt('Edit your to-do:', todo.text);
+			if (newText !== null && newText.trim() !== '') {
+				todo.text = newText.trim();
+			}
+		}
+	}
+
+	function clearCompleted() {
+		todos = todos.filter((todo) => !todo.completed);
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
